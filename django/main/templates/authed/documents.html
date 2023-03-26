@@ -1,0 +1,51 @@
+{% extends './new_base.html' %}
+
+{% block title %}Documents{% endblock title %}
+
+{% block aside %}
+{% include './sidebar.html' %}
+{% endblock aside %}
+
+{% block navbar %}
+{% include './navbar.html' %}
+{% endblock navbar %}
+
+{% block content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Documents: {{papers|length}} (Scopus)</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-danger">
+                                <th>Title</th>
+                                <th>Authors</th>
+                                <th>Conference</th>
+                                <th>DOI</th>
+                                <th>Paper Type</th>
+                                <th>Cited By</th>
+                            </thead>
+                            <tbody>
+                                {% for paper in papers %}
+                                <tr>
+                                    <td><a class="text-primary" href="/documents/{{ paper.paper_id }}/{{paper.paper_title.split|join:"-"}}">{{ paper.paper_title }}</a></td>
+                                    <td>{{paper.author_order}}</td>
+                                    <td>{{paper.publication_name}}</td>
+                                    <td>{{paper.paper_doi}}</td>
+                                    <td>{{paper.paper_type}}</td>
+                                    <td>{{paper.paper_citedbycount}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

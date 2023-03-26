@@ -1,0 +1,40 @@
+{% load static %}
+<aside class="sidebar" data-color="white" data-active-color="danger">
+    <div class="logo">
+        <a href="#" class="simple-text logo-mini">
+            <div class="logo-image-small">
+                <img src= "{% static './media/cropped-ihu-logo_el-16.png' %}" alt="">
+                {% comment %} <img src="./assets/img/logo-small.png"> {% endcomment %}
+            </div>
+            <!-- <p>CT</p> -->
+        </a>
+        <a href="#" class="simple-text logo-normal">
+            Scopy
+            <!-- <div class="logo-image-big">
+              <img src="../assets/img/logo-big.png">
+            </div> -->
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="{% if request.path == '/profile/' %}active{% endif %}">
+                <a href={% url 'profile' %}>
+                <i class="fas fa-user-cog"></i>
+                    <p>Profile</p>
+                </a>
+            </li>
+            <li class="{% if request.path == '/dashboard/' %}active{% endif %}">
+                <a href={% url 'dashboard' %}>
+                    <i class="far fa-chart-bar"></i>
+                    <p>Dasboard (Scopus)</p>
+                </a>
+            </li>
+            <li class="{% if request.path == '/documents/' %}active{% endif %}">
+                <a href={% url 'documents' %}>
+                    <i class="fas fa-book"></i>
+                    <p>Documents</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>

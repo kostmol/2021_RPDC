@@ -1,0 +1,21 @@
+{% extends './new_base.html' %}
+{% block title %}Paper{% endblock title %}
+
+{% block aside %}
+{% include './sidebar.html' %}
+{% endblock aside %}
+
+{% block navbar %}
+{% include './navbar.html' %}
+{% endblock navbar %}
+    
+{% block content%}
+<section class="content">    
+    <div class="row">
+        <div class="col-md-12">
+            <p>{{paper.paper_description}}</p>
+        </div>
+    </div>
+    
+</section>
+{% endblock content %}

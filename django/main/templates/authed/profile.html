@@ -1,0 +1,225 @@
+{% extends './new_base.html' %}
+
+{% block title %}Documents{% endblock title %}
+
+{% block aside %}
+{% include './sidebar.html' %}
+{% endblock aside %}
+
+{% block navbar %}
+{% include './navbar.html' %}
+{% endblock navbar %}
+
+{% block content %}
+<section class="content">
+    <div class="row justify-content-center">
+        {% comment %} <div class="col-md-4">
+            <div class="card card-user">
+                <div class="image">
+                    <img src="../assets/img/damir-bosnjak.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <div class="author">
+                        <a href="#">
+                            <img class="avatar border-gray" src="../assets/img/mike.jpg" alt="...">
+                            <h5 class="title">{{user}}</h5>
+                        </a>
+                        <p class="description">
+                            @{{user}}
+                        </p>
+                    </div>
+                    <p class="description text-center">
+                        "I like the way you work it <br>
+                        No diggity <br>
+                        I wanna bag it up"
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="button-container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+                                <h5>12<br><small>Files</small></h5>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                                <h5>2GB<br><small>Used</small></h5>
+                            </div>
+                            <div class="col-lg-3 mr-auto">
+                                <h5>24,6$<br><small>Spent</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Team Members</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled team-members">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-2 col-2">
+                                    <div class="avatar">
+                                        <img src="../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image"
+                                            class="img-circle img-no-padding img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-7">
+                                    DJ Khaled
+                                    <br />
+                                    <span class="text-muted"><small>Offline</small></span>
+                                </div>
+                                <div class="col-md-3 col-3 text-right">
+                                    <btn class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                            class="fa fa-envelope"></i></btn>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-md-2 col-2">
+                                    <div class="avatar">
+                                        <img src="../assets/img/faces/joe-gardner-2.jpg" alt="Circle Image"
+                                            class="img-circle img-no-padding img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-7">
+                                    Creative Tim
+                                    <br />
+                                    <span class="text-success"><small>Available</small></span>
+                                </div>
+                                <div class="col-md-3 col-3 text-right">
+                                    <btn class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                            class="fa fa-envelope"></i></btn>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-md-2 col-2">
+                                    <div class="avatar">
+                                        <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image"
+                                            class="img-circle img-no-padding img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-ms-7 col-7">
+                                    Flume
+                                    <br />
+                                    <span class="text-danger"><small>Busy</small></span>
+                                </div>
+                                <div class="col-md-3 col-3 text-right">
+                                    <btn class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                                            class="fa fa-envelope"></i></btn>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="col-md-8">
+            <div class="card card-user">
+                <div class="card-header">
+                    <h5 class="card-title">Edit Profile</h5>
+                </div>
+                <div class="card-body">
+                    {% load form_extras %}
+                    <form action="" method="POST" name="profile_form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" disabled="" value={{AppUser}} name="username">
+                                </div>
+                            </div>
+                            <div class="col-md-5 ">
+                                <div class="form-group">
+                                    <label for="user_email">Email address</label>
+                                    <input type="text" class="form-control" value={{AppUser.user_email|default_if_none:"''"}} name="user_email">
+                                    {% comment %} {{form.user_email.label_tag}} {% endcomment %}
+                                    {% comment %} {{form.user_email|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="user_firstname">First Name</label>
+                                    <input type="text" class="form-control" value={{AppUser.user_firstname|default_if_none:"''"}} name="user_firstname">
+                                    {% comment %} {{form.user_firstname.label_tag}}
+                                    {{form.user_firstname|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-md-5 ">
+                                <div class="form-group">
+                                    <label for="user_lastname">Last Name</label>
+                                    <input type="text" class="form-control" value={{AppUser.user_lastname|default_if_none:"''"}} name="user_lastname">
+                                    {% comment %} {{form.user_lastname.label_tag}}
+                                    {{form.user_lastname|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">                             
+                                    {{form.user_rank.label_tag}}
+                                    {{form.user_rank|addclass:'form-control'}}
+                                </div>
+                            </div>
+                            <div class="col-md-5 ">
+                                <div class="form-group">
+                                    <label for="apps_id">Apps ID</label>
+                                    <input type="text" class="form-control" value={{AppUser.apps_id|default_if_none:"''"}} name="apps_id">
+                                    {% comment %} {{form.apps_id.label_tag}}
+                                    {{form.apps_id|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="user_scopus_id">Scopus ID</label>
+                                    <input type="text" class="form-control" value={{AppUser.user_scopus_id|default_if_none:"''"}} name="user_scopus_id">
+                                    {% comment %} {{form.user_scopus_id.label_tag}}
+                                    {{form.user_scopus_id|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="user_orc_id">ORC ID</label>
+                                    <input type="text" class="form-control" value={{AppUser.user_orc_id|default_if_none:"''"}} name="user_orc_id">
+                                    {% comment %} {{form.user_orc_id.label_tag}}
+                                    {{form.user_orc_id|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="user_scholar_id">Scholar ID</label>
+                                    <input type="text" class="form-control" value={{AppUser.user_scholar_id|default_if_none:"''"}} name="user_scholar_id">
+                                    {% comment %} {{form.user_scholar_id.label_tag}}
+                                    {{form.user_scholar_id|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="user_researcher_id">Researcher ID</label>
+                                    <input type="text" class="form-control" value={{AppUser.user_researcher_id|default_if_none:"''"}} name="user_researcher_id">
+                                    {% comment %} {{form.user_researcher_id.label_tag}}
+                                    {{form.user_researcher_id|addclass:'form-control'}} {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button type="submit" class="btn btn-danger btn-round">Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
